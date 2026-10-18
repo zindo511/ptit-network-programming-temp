@@ -1,8 +1,8 @@
-# Project Name
+# ExamLink — TCP-Based Online Exam System
 
 > **Course:** Network Programming (INT1433) · PTIT · Instructor: Dr. Hung N. Dang
 >
-> *One-sentence pitch: what your system does and for whom.*
+> *An online exam system with JavaFX clients for candidates and proctors, a Java TCP socket server, and automatic session recovery with saved answers after connection loss.*
 
 👋 **New here? Read first:** [`docs/student-guide.md`](docs/student-guide.md) · 📜 Brief & grading: [`INSTRUCTION.md`](INSTRUCTION.md) · 🚀 Workflow: [`GETTING_STARTED.md`](GETTING_STARTED.md)
 
@@ -14,20 +14,20 @@
 
 | # | Full name | Student ID | Class | GitHub | Role |
 |:-:|-----------|:----------:|:-----:|--------|------|
-| 1 | | | | @ | |
-| 2 | | | | @ | |
-| 3 | | | | @ | |
+| 1 | Trịnh Quang Huy | B23DCCN410 | D23CNPM02 | @zindo511 | Team leader |
+| 2 | Nguyễn Thanh Bằng | B23DCCN066 | D23CNPM05 | @bang066123 | Member |
+| 3 | Trịnh Minh Đức | B23DCCN192 | D23CNPM05 | @mduckkkk | Member |
 
-**Topic:** *(e.g., Multi-room chat over TCP)*
+**Topic:** Online exam system over TCP with session recovery after connection loss (Java Socket)
 
 ---
 
 ## 2. Problem & Idea (mandatory)
 
-- **Problem:** *(What problem are you solving? Who has it?)*
-- **Our idea:** *(Your solution in 2–3 sentences.)*
-- **What makes it non-trivial:** *(The networking challenge — e.g., resuming transfers, real-time sync, fairness under load.)*
-- **Out of scope:** *(What you deliberately do not build.)*
+- **Problem:** When the connection drops during an online exam, candidates cannot tell whether their answers were saved or whether their submission went through, and proctors have a hard time tracking incidents.
+- **Our idea:** A JavaFX application for both candidates and proctors that connects to the server over TCP sockets using a custom protocol, with **length-prefix framing** to delimit messages. The server keeps each exam session independent of the underlying connection, so it can restore saved answers on reconnect while keeping the original exam deadline unchanged. Clients with the **PROCTOR** role can monitor candidates' status, and a **heartbeat (PING/PONG)** detects lost contact based on a timeout threshold.
+- **What makes it non-trivial:** Assembling and splitting messages from the TCP byte stream; serving many clients concurrently; handling duplicate requests and avoiding conflicts between saving answers, submitting, time expiry and reconnecting.
+- **MVP scope / Out of scope:** Sessions are kept in RAM only. Not supported yet: database persistence, recovery after a server restart, web UI, webcam proctoring.
 
 Full proposal: [`docs/proposal.md`](docs/proposal.md)
 
