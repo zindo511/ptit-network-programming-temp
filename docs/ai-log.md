@@ -14,7 +14,7 @@
 | # | Date | Member | Tool / model | Task — what you asked | What AI produced | What you kept, changed or rejected — and how you verified it | Files |
 |:-:|------|--------|--------------|-----------------------|------------------|---------------------------------------------------------------|-------|
 | 0 | *(example — delete)* | *Nguyen Van A* | *Claude* | *Compare thread-per-client vs. NIO selector for our chat server* | *Comparison table + sample selector loop* | *Chose a fixed thread pool instead (easier to reason about locking); rewrote the accept loop; tested with 50 concurrent clients* | *`docs/architecture.md`, `server/src/Server.java`* |
-| 1 | | | | | | | |
+| 1 | 2026-10-19 | Trịnh Quang Huy | Gemini | Translate Vietnamese draft of Problem & Idea into English and refine project title/pitch for README | English translation for §2 (Problem, Idea, Non-trivial challenges, MVP scope) and suggestions for project title & one-sentence pitch | Kept the English translation for §2; refined the one-sentence pitch to clarify that JavaFX is the client and only saved answers are restored; chose the title `ExamLink` | `README.md` |
 
 ---
 
